@@ -12,3 +12,10 @@ export interface OpenAIResponse {
       finish_reason: string
     }>
 }
+
+export interface ItineraryType {
+    prompt: string
+    itinerary: string
+    createdDate?: string
+    isFavorite?: boolean
+}

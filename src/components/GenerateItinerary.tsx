@@ -4,10 +4,12 @@ import { useCallback, useState } from "react"
 import { Button, TextField, Typography, Box, Alert } from "@mui/material"
 import { OpenAIResponse } from "@/utils/interface";
 import { isValidPrompt } from "@/utils/validation";
+import { ItineraryDocument } from "@/models/Itinerary";
 
 const itineraryDefaultText: string = 'The generated itinerary will be displayed here.'
 
 type generateAPIResponse = OpenAIResponse | { error: string }
+type saveAPIResponse = ItineraryDocument | { error: string }
 
 export default function GenerateItinerary() {
     const [prompt, setPrompt] = useState<string>('')
@@ -15,6 +17,11 @@ export default function GenerateItinerary() {
     const [isGenerating, setIsGenerating] = useState<boolean>(false)
     const [apiError, setApiError] = useState<string>('')
     const [itineraryText, setItineraryText] = useState(itineraryDefaultText)
+    const [isSaving, setIsSaving] = useState<boolean>(false)
+
+    const handlePromptChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+        setPrompt(e.target.value)
+    }, [])
 
     const handleGenerateClick = useCallback(async (): Promise<void> => {
         if(!isValidPrompt(prompt)) {
@@ -45,13 +52,35 @@ export default function GenerateItinerary() {
         } catch (error) {
           setApiError('Error connecting to server.')
         } finally {
-          setIsGenerating(false);
+          setIsGenerating(false)
         }
     }, [prompt])
 
-    const handlePromptChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-          setPrompt(e.target.value)
-    }, [])
+    const handleSaveClick = useCallback(async (): Promise<void> => {    
+        setApiError('')
+        setIsSaving(true)
+    
+        try {
+          const res: Response = await fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt, itinerary: itineraryText })
+          })
+    
+          const data: saveAPIResponse = await res.json()
+    
+          if ('error' in data) {
+            setApiError(data.error)
+            return
+          }
+        } catch (error) {
+          setApiError('Error connecting to server.')
+        } finally {
+          setIsSaving(false)
+        }
+    }, [prompt, itineraryText])
+
+    const isGenerated = itineraryText !== itineraryDefaultText
 
     return (
         <>
@@ -71,7 +100,7 @@ export default function GenerateItinerary() {
                     padding: 3,
                     borderRadius: 1,
                     width: '70%',
-                    height: itineraryText === itineraryDefaultText ? '10%' : '60%',
+                    height: isGenerated ? '60%' : '10%',
                     margin: '0 auto',
                     overflowY: 'scroll',
                     transition: 'height 0.3s ease',
@@ -80,7 +109,7 @@ export default function GenerateItinerary() {
             >
                 <Typography
                     variant="body1"
-                    align={itineraryText === itineraryDefaultText ? 'center' : 'left'}
+                    align={isGenerated ? 'left' : 'center'}
                     color="text.primary"
                 >
                     {itineraryText}
@@ -114,14 +143,16 @@ export default function GenerateItinerary() {
                     variant="contained"
                     onClick={handleGenerateClick}
                     loading={isGenerating}
-                    disabled={!prompt}
+                    disabled={!prompt || isSaving}
                 >
                     Generate Itinerary
                 </Button>
 
                 <Button
                     variant="contained"
-                    disabled={itineraryText === itineraryDefaultText}
+                    onClick={handleSaveClick}
+                    disabled={!isGenerated || isGenerating}
+                    loading={isSaving}
                 >
                     Save Itinerary
                 </Button>
