@@ -6,12 +6,6 @@ type RequestBody = {
     isFavorite: boolean
 }
 
-type RouteContext = {
-    params: {
-      id: string;
-    };
-}
-
 export async function PUT(req: NextRequest, {params}: { params: Promise<{ id: string }> }): Promise<NextResponse> {
   try {
     await connectToDatabase()
