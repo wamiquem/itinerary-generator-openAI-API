@@ -132,3 +132,49 @@ App is available at `http://localhost:3000`
 - Considerations for accessibility, for instance, use ARIA labels and tabIndex wherever needed.
 - Cross browser compatibility
 - Provide Login and Authentication functionalities. We will have to ensure we address any security vulnerability like XSRF.
+- I have used nextjs boilerplate code's favicon.ico so the icon on the browser tab is the NextJs logo.
+
+## Known Issues
+- Disabled eslint for mongoose file — global as any.
+- The history page at the back of the View Modal when opened is scrollable.
+- There is some inconsistency with enclosing strings in the code (Somewhere it is ' and at other places its "). This is mostly because of suggestions by vscode editor.
+
+### Some Edge Cases Considered
+- The UX design is responsive. I have tested it on iPhone device screen size on Chrome. Most of related CSS styling is handled by Material UI.
+- User should not be able to generate itinerary with empty or non-travel related prompts
+- When API call is in progress, disable `Generate itinerary` and `Save itinerary` buttons which will disable duplicate API calls
+
+## Disclaimer
+- The mongoose library connection file is copy/pasted as it from internet source
+- I have taken reference of next API routes structure and initial code from internet source
+- Some of the material UI components are copy/pasted from the material UI site for faster development.
+- The idea for the app and UX/UI and architecture is completelty mine.
+
+## Screenshots
+<img width="1099" alt="Screenshot 2025-05-19 at 2 23 48 PM" src="https://github.com/user-attachments/assets/5f57463b-12d3-4170-8989-a95c3eebe98f" />
+
+<img width="1098" alt="Screenshot 2025-05-19 at 2 25 06 PM" src="https://github.com/user-attachments/assets/59c7f842-068e-4408-9147-4ce9f0ea05d7" />
+
+<img width="960" alt="Screenshot 2025-05-19 at 2 26 02 PM" src="https://github.com/user-attachments/assets/9f9f6a2e-3f3c-4cf5-a16e-5987a7d7a8cf" />
+
+<img width="961" alt="Screenshot 2025-05-19 at 2 26 30 PM" src="https://github.com/user-attachments/assets/ca9cf98a-e6ef-4e0b-acca-ca780676d8ee" />
+
+<img width="961" alt="Screenshot 2025-05-19 at 2 26 50 PM" src="https://github.com/user-attachments/assets/0ebbfd3c-1961-4161-92a5-dedc806de4b6" />
+
+<img width="959" alt="Screenshot 2025-05-19 at 2 27 19 PM" src="https://github.com/user-attachments/assets/fcd795ce-4153-4fa3-aa5c-0a88a73f73a3" />
+
+<img width="961" alt="Screenshot 2025-05-19 at 2 27 42 PM" src="https://github.com/user-attachments/assets/705acd2c-cfc8-47f8-9daf-9d4675b861fd" />
+
+<img width="960" alt="Screenshot 2025-05-19 at 2 28 05 PM" src="https://github.com/user-attachments/assets/b2dadf4b-8bcb-432b-a845-d34c317494f4" />
+
+<img width="962" alt="Screenshot 2025-05-19 at 2 28 28 PM" src="https://github.com/user-attachments/assets/dab3951e-2d21-4df0-bc5e-955152716134" />
+
+<img width="959" alt="Screenshot 2025-05-19 at 2 29 02 PM" src="https://github.com/user-attachments/assets/544db97a-92f6-462d-a3be-f74c43241dde" />
+
+<img width="960" alt="Screenshot 2025-05-19 at 2 31 31 PM" src="https://github.com/user-attachments/assets/83816c11-130b-43d1-9b81-2fb1eafd2c13" />
+
+<img width="963" alt="Screenshot 2025-05-19 at 2 30 51 PM" src="https://github.com/user-attachments/assets/dd7db829-b9ae-4778-861a-e9d4bfa34883" />
+
+<img width="362" alt="Screenshot 2025-05-19 at 2 33 18 PM" src="https://github.com/user-attachments/assets/987ffe1c-3d89-40ff-a9ac-35ace729f4cb" />
+
+<img width="362" alt="Screenshot 2025-05-19 at 2 33 38 PM" src="https://github.com/user-attachments/assets/d85cb70d-8c95-4acd-8e78-d478672869be" />
