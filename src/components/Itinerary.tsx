@@ -32,7 +32,7 @@ const modalContentStyle = {
   whiteSpace: 'pre-wrap'
 }
 
-export default function Itinerary({ id, prompt, itinerary, createdDate, isFavorite, onFavoriteChange }: ItineraryProps) {
+export default function Itinerary({ id, prompt, itinerary, isFavorite, onFavoriteChange }: ItineraryProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [apiError, setApiError] = useState<string>('')
 
@@ -58,14 +58,14 @@ export default function Itinerary({ id, prompt, itinerary, createdDate, isFavori
       }
 
       onFavoriteChange(id, !isFavorite)
-    } catch (error) {
+    } catch (_) {
       setApiError('Error connecting to server.')
     }
   }, [isFavorite, onFavoriteChange])
 
   return (
     <>
-      <Card  sx={{ width: '70%' }}>
+      <Card variant="outlined" sx={{ width: '70%', backgroundColor: '#f0f0f0' }}>
         <CardContent>
           <Typography variant="h6">{prompt}</Typography>
         </CardContent>

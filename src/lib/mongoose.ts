@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
-let cached = (global as any).mongoose || { conn: null };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const cached = (global as any).mongoose || { conn: null };
 
 export async function connectToDatabase() {
   if (cached.conn) return cached.conn;

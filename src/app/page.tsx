@@ -11,11 +11,11 @@ export default function Generate() {
       height: '90vh'
     }}>
       <Typography
-        variant="h6"
+        variant="h4"
         align="center"
-        sx={{width: '70%'}}
+        sx={{width: '70%', mt: 1}}
       >
-        Generate travel Itineraries, Curated by AI
+        Plan your perfect trip
       </Typography>
 
       <GenerateItinerary />

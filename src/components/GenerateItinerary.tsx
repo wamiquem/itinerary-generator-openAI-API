@@ -8,7 +8,7 @@ import { OpenAIResponse } from "@/utils/interface";
 import { isValidPrompt } from "@/utils/validation";
 import { ItineraryDocument } from "@/models/Itinerary";
 
-const itineraryDefaultText: string = 'The generated itinerary will be displayed here.'
+const itineraryDefaultText: string = 'The generated itinerary will be displayed here'
 
 type generateAPIResponse = OpenAIResponse | { error: string }
 type saveAPIResponse = ItineraryDocument | { error: string }
@@ -52,7 +52,7 @@ export default function GenerateItinerary() {
     
           const generatedItineraryText: string = data.choices[0].message.content
           setItineraryText(generatedItineraryText)
-        } catch (error) {
+        } catch (_) {
           setApiError('Error connecting to server.')
         } finally {
           setIsGenerating(false)
@@ -78,7 +78,7 @@ export default function GenerateItinerary() {
           }
 
           setIsDialogOpen(true)
-        } catch (error) {
+        } catch (_) {
           setApiError('Error connecting to server.')
         } finally {
           setIsSaving(false)
@@ -173,7 +173,7 @@ export default function GenerateItinerary() {
 
                 <DialogContent>
                     <DialogContentText>
-                    Your action was completed successfully.
+                        Itinerary saved successfully
                     </DialogContentText>
                 </DialogContent>
 
