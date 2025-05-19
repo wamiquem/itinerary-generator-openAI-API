@@ -6,16 +6,10 @@ type RequestBody = {
     isFavorite: boolean
 }
 
-type ParamsType = {
-    params : {
-        id: string
-    }
-}
-
-export async function PUT(req: NextRequest, { params }: ParamsType ): Promise<NextResponse> {
+export async function PUT(req: NextRequest, { params }: { params: { id: string } } ): Promise<NextResponse> {
   try {
     await connectToDatabase()
-    
+
     const { id } = params
     const { isFavorite }: RequestBody = await req.json()
     
