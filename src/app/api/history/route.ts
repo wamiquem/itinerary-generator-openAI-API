@@ -6,6 +6,7 @@ export async function GET(): Promise<Response> {
   try {
     await connectToDatabase()
 
+    // Return latest itinerary first
     const itineraries = await Itinerary.find().sort({ createdDate: -1 }).lean();
 
     return NextResponse.json(itineraries)

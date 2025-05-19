@@ -27,11 +27,13 @@ export default function GenerateItinerary() {
     }, [])
 
     const handleGenerateClick = useCallback(async (): Promise<void> => {
+        // Early return for non-travel related prompt
         if(!isValidPrompt(prompt)) {
           setPromptHelperText('Please enter only travel-related text. Include words like trip, travel, vacation etc.')
           return
         }
     
+        // Resets error and helperText if exists
         setApiError('')
         setPromptHelperText('')
         setIsGenerating(true)

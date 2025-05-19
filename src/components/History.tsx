@@ -50,12 +50,14 @@ export default function History() {
   }, [])
 
     const filteredItineraries: ItineraryDocument[] = useMemo(() => {
+      // Filter first by matching search query
       const searchQueryMatchedItineraries =
         itineraries.filter((item) => 
           item.prompt.toLowerCase().includes(searchQuery.toLowerCase()) ||
           item.itinerary.toLowerCase().includes(searchQuery.toLowerCase())
         )
 
+      // Filter if Favorites checked else return all itineraries
       return showFavorites
         ? searchQueryMatchedItineraries.filter((item) => item.isFavorite)
         : searchQueryMatchedItineraries

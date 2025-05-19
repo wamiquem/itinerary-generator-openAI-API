@@ -71,14 +71,14 @@ export default function Itinerary({ id, prompt, itinerary, isFavorite, onFavorit
         </CardContent>
 
         <CardActions>
-        <Tooltip 
-          title={isFavorite ? "Unset Favorite" : "Set Favorite"}
-          placement="top"
-        >
-          <IconButton onClick={handleFavoriteClick}>
-            {isFavorite ? <FavoriteIcon color="primary"/> : <FavoriteOutlinedIcon color="primary"/>}
-          </IconButton>
-        </Tooltip>
+          <Tooltip 
+            title={isFavorite ? "Unset Favorite" : "Set Favorite"}
+            placement="top"
+          >
+            <IconButton onClick={handleFavoriteClick}>
+              {isFavorite ? <FavoriteIcon color="primary"/> : <FavoriteOutlinedIcon color="primary"/>}
+            </IconButton>
+          </Tooltip>
 
           <Tooltip title="View Itinerary" placement="top">
             <IconButton onClick={() => setIsModalOpen(true)}>
