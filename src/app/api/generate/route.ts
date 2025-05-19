@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { OpenAIResponse } from '@/utils/interface'
 
 type RequestBody = {
     message: string
 }
 
-export async function POST(req: Request): Promise<Response> {
+export async function POST(req: NextRequest): Promise<Response> {
   const { message }: RequestBody = await req.json()
 
   try {

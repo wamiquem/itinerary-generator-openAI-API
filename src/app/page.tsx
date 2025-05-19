@@ -15,7 +15,7 @@ export default function Generate() {
         align="center"
         sx={{width: '70%'}}
       >
-        Generate a travel itinerary.
+        Generate travel Itineraries, Curated by AI
       </Typography>
 
       <GenerateItinerary />

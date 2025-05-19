@@ -1,21 +1,21 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { ItineraryType } from '@/utils/interface'
 import { connectToDatabase } from '@/lib/mongoose'
 import Itinerary from '@/models/Itinerary'
 
-export async function POST(req: Request): Promise<Response> {
+export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const body: ItineraryType = await req.json()
     
     if (!body.prompt || !body.itinerary) {
-      return new Response("Missing itinerary data", { status: 400 })
+      return NextResponse.json({ error: 'Missing itinerary data' }, { status: 400 })
     }
 
     await connectToDatabase()
 
     const newItinerary = await Itinerary.create(body)
 
-    return Response.json(
+    return NextResponse.json(
       { success: true, data: newItinerary },
       { status: 201 }
     )

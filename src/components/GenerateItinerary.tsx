@@ -1,7 +1,9 @@
 'use client';
 
 import { useCallback, useState } from "react"
-import { Button, TextField, Typography, Box, Alert } from "@mui/material"
+import { 
+    Button, TextField, Typography, Box, Alert, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
+} from "@mui/material"
 import { OpenAIResponse } from "@/utils/interface";
 import { isValidPrompt } from "@/utils/validation";
 import { ItineraryDocument } from "@/models/Itinerary";
@@ -18,6 +20,7 @@ export default function GenerateItinerary() {
     const [apiError, setApiError] = useState<string>('')
     const [itineraryText, setItineraryText] = useState(itineraryDefaultText)
     const [isSaving, setIsSaving] = useState<boolean>(false)
+    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
 
     const handlePromptChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>): void => {
         setPrompt(e.target.value)
@@ -61,7 +64,7 @@ export default function GenerateItinerary() {
         setIsSaving(true)
     
         try {
-          const res: Response = await fetch('/api/save', {
+          const res: Response = await fetch('/api/itineraries', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt, itinerary: itineraryText })
@@ -73,6 +76,8 @@ export default function GenerateItinerary() {
             setApiError(data.error)
             return
           }
+
+          setIsDialogOpen(true)
         } catch (error) {
           setApiError('Error connecting to server.')
         } finally {
@@ -80,20 +85,16 @@ export default function GenerateItinerary() {
         }
     }, [prompt, itineraryText])
 
+    const handleDialogClose = useCallback(() => {
+        setIsDialogOpen(false)
+        setPrompt('')
+        setItineraryText(itineraryDefaultText)
+    }, [])
+
     const isGenerated = itineraryText !== itineraryDefaultText
 
     return (
-        <>
-            {apiError &&
-                <Alert
-                    variant="filled"
-                    severity="error"
-                    sx={{position: 'absolute', top: 5, zIndex: 9999}}
-                >
-                {apiError}
-                </Alert>
-            }
-                
+        <>                
             <Box
                 sx={{
                     backgroundColor: '#f5f5f5',
@@ -157,6 +158,35 @@ export default function GenerateItinerary() {
                     Save Itinerary
                 </Button>
             </Box>
+
+            {apiError &&
+                <Alert
+                    severity="error"
+                    onClose={() => setApiError('')}
+                >
+                {apiError}
+                </Alert>
+            }
+
+            <Dialog open={isDialogOpen}>
+                <DialogTitle>Success</DialogTitle>
+
+                <DialogContent>
+                    <DialogContentText>
+                    Your action was completed successfully.
+                    </DialogContentText>
+                </DialogContent>
+
+                <DialogActions>
+                    <Button
+                        onClick={handleDialogClose}
+                        color="primary"
+                        variant="contained"
+                    >
+                        OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
