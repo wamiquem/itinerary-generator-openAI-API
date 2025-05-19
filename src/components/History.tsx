@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { Alert, Box, Checkbox, Container, Divider, FormControlLabel, TextField, Typography } from "@mui/material"
+import { Alert, Box, Checkbox, Container, Divider, FormControlLabel, TextField } from "@mui/material"
 import { ItineraryDocument } from "@/models/Itinerary";
 import Itinerary, { ItineraryProps } from "./Itinerary";
 
@@ -27,7 +27,7 @@ export default function History() {
           }
 
           setItineraries(data)
-        } catch (_) {
+        } catch {
           setApiError('Error connecting to server.')
         } finally {
           setIsFetching(false)

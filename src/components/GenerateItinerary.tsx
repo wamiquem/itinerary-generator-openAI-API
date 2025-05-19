@@ -52,7 +52,7 @@ export default function GenerateItinerary() {
     
           const generatedItineraryText: string = data.choices[0].message.content
           setItineraryText(generatedItineraryText)
-        } catch (_) {
+        } catch {
           setApiError('Error connecting to server.')
         } finally {
           setIsGenerating(false)
@@ -78,7 +78,7 @@ export default function GenerateItinerary() {
           }
 
           setIsDialogOpen(true)
-        } catch (_) {
+        } catch {
           setApiError('Error connecting to server.')
         } finally {
           setIsSaving(false)

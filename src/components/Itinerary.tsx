@@ -58,7 +58,7 @@ export default function Itinerary({ id, prompt, itinerary, isFavorite, onFavorit
       }
 
       onFavoriteChange(id, !isFavorite)
-    } catch (_) {
+    } catch {
       setApiError('Error connecting to server.')
     }
   }, [isFavorite, onFavoriteChange, id])
