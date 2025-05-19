@@ -6,11 +6,17 @@ type RequestBody = {
     isFavorite: boolean
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } } ): Promise<NextResponse> {
+type RouteContext = {
+    params: {
+      id: string;
+    };
+}
+
+export async function PUT(req: NextRequest, {params}: RouteContext): Promise<NextResponse> {
   try {
     await connectToDatabase()
 
-    const { id } = context.params
+    const { id } = params
     const { isFavorite }: RequestBody = await req.json()
     
     if (typeof isFavorite !== "boolean") {
