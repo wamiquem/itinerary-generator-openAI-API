@@ -14,14 +14,14 @@ type ParamsType = {
 
 export async function PUT(req: NextRequest, { params }: ParamsType ): Promise<NextResponse> {
   try {
-    const id = params.id
+    await connectToDatabase()
+    
+    const { id } = params
     const { isFavorite }: RequestBody = await req.json()
     
     if (typeof isFavorite !== "boolean") {
         return NextResponse.json({ error: 'isFavorite must be boolean' }, { status: 400 })
     }
-
-    await connectToDatabase()
 
     const updatedItinerary = await Itinerary.findByIdAndUpdate(
         id,
