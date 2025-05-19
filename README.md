@@ -139,7 +139,7 @@ App is available at `http://localhost:3000`
 - The history page at the back of the View Modal when opened is scrollable.
 - There is some inconsistency with enclosing strings in the code (Somewhere it is ' and at other places its "). This is mostly because of suggestions by vscode editor.
 
-### Some Edge Cases Considered
+## Some Edge Cases Considered
 - The UX design is responsive. I have tested it on iPhone device screen size on Chrome. Most of related CSS styling is handled by Material UI.
 - User should not be able to generate itinerary with empty or non-travel related prompts
 - When API call is in progress, disable `Generate itinerary` and `Save itinerary` buttons which will disable duplicate API calls
