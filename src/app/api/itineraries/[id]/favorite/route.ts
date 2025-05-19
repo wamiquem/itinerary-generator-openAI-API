@@ -12,11 +12,11 @@ type RouteContext = {
     };
 }
 
-export async function PUT(req: NextRequest, {params}: RouteContext): Promise<NextResponse> {
+export async function PUT(req: NextRequest, {params}: { params: Promise<{ id: string }> }): Promise<NextResponse> {
   try {
     await connectToDatabase()
 
-    const { id } = params
+    const id = (await params).id
     const { isFavorite }: RequestBody = await req.json()
     
     if (typeof isFavorite !== "boolean") {
