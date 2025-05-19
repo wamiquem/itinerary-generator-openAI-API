@@ -6,12 +6,21 @@ export default function Navbar() {
     return (
         <AppBar position="fixed">
             <Toolbar>
-                <Box sx={{ flexGrow: 1 }}>
+                <Box sx={{ 
+                    display: 'flex',
+                    fontWeight: 700,
+                    flexGrow: 1,
+                    alignItems: 'center'
+                    }}
+                >
                     <Link href="/" passHref>
                         <IconButton>
                             <PublicIcon sx={{ color: 'white' }}/>
                         </IconButton>
                     </Link>
+                    <Typography variant="h6" noWrap sx={{display: { xs: 'none', md: 'flex'}}}>
+                        Travel Buddy
+                    </Typography>
                 </Box>
 
                 <Box sx={{ display: 'flex', gap: 2 }}>
