@@ -33,8 +33,8 @@ Note:
 
 ### 1. Clone the Repo
 ```bash
-git clone https://github.com/your-username/klarity-take-home-project.git
-cd klarity-take-home-project
+git clone https://github.com/your-username/itinerary-generator-openAI-API.git
+cd itinerary-generator-openAI-API
 ```
 
 ### 2. Install dependencies
@@ -115,34 +115,6 @@ App is available at `http://localhost:3000`
 ### 4. Error Handling
 - Proper message is shown to the user if the prompt is not travel related
 - Alerts with proper message is shown to the users for API errors.
-
-## Future Improvements/Enhancements
-- First thing I will do is add Unit tests for Component and API testing.
-- I have created a util that compares the prompt with an array of keywords. If the prompt does not contain any of the keywords, a message is shown to the user. We can use OpenAI API to filter non-travel related prompts. This will give more control for the prompt and a better user experience. This will also ensure blocking more unnecssary calls to OpenAI API that will ensure less API usage and ultimately saving some money.
-- Can have a hybrid prompt model which asks user for options like dates and cities.
-- For now, I am calling backend APIs using fetch from multiple place. We can have a custom hook (eg: useFetchApi) and call reuse the same hook for better code readability.
-- Can use material UI theming to provide dark mode and light mode options to users.
-- Provide functionalities like delete individual itinerary data from the history. Also, provide option to clear history.
-- Provide functionalities for Sorting based on created date.
-- Provide functionalities like generating PDF and printing the itinerary.
-- Tooltip placement and styling.
-- Handling Error from a dedicated component by using APIContext. Also improving UI for error.
-- Changing `Fetching...` text with a better UI.
-- Success message for Mark/Unmark Favorite like Save Itinerary. We can have a common reusable Dialog component curated as per our need.
-- Considerations for accessibility, for instance, use ARIA labels and tabIndex wherever needed.
-- Cross browser compatibility
-- Provide Login and Authentication functionalities. We will have to ensure we address any security vulnerability like XSRF.
-- I have used nextjs boilerplate code's favicon.ico so the icon on the browser tab is the NextJs logo.
-
-## Known Issues
-- Disabled eslint for mongoose file — global as any.
-- The history page at the back of the View Modal when opened is scrollable.
-- There is some inconsistency with enclosing strings in the code (Somewhere it is ' and at other places its "). This is mostly because of suggestions by vscode editor.
-
-## Some Edge Cases Considered
-- The UX design is responsive. I have tested it on iPhone device screen size on Chrome. Most of related CSS styling is handled by Material UI.
-- User should not be able to generate itinerary with empty or non-travel related prompts
-- When API call is in progress, disable `Generate itinerary` and `Save itinerary` buttons which will disable duplicate API calls
 
 ## Disclaimer
 - The mongoose library connection file is copy/pasted as it from internet source
